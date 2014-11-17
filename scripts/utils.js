@@ -16,5 +16,24 @@ var utils = (function (){
 
     return {
         getDate: getDate
-    }
+    };
 })();
+
+Array.prototype.saveInLocal = function(key) {
+  if(typeof key === "string") {
+    localStorage[key] = JSON.stringify(this);
+  }
+};
+
+Array.prototype.getFromLocal = function(key) {
+  if(typeof key === "string" && localStorage[key] !== undefined) {
+    var list = JSON.parse(localStorage[key]);
+    if(list instanceof Array) {
+      this.length = 0;
+      for(var i in list) {
+        this.push(list[i]);
+      }
+      this.length = list.length;
+    }
+  }
+};
