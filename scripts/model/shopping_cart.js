@@ -1,15 +1,15 @@
 function ShoppingCart() {
 
-  this.goodList = [];
+  this.itemList = [];
   this.sumPrice = 0.0;
   this.itemAmount = 0;
 
   this.updateCart = function() {
     var sumPrice = 0;
     var amount = 0;
-    this.goodList.forEach(function(item) {
+    this.itemList.forEach(function(item) {
       amount += item.amount;
-      sumPrice += item.amount * item.price;
+      sumPrice += item.sumPrice;
     });
     this.sumPrice = sumPrice;
     this.itemAmount = amount;
@@ -17,23 +17,25 @@ function ShoppingCart() {
 
   this.addItem = function(barcode) {
     var items = loadAllItems();
-    var item = this.goodList.getElementByKey(barcode, "barcode");
+    var item = this.itemList.getElementByKey(barcode, "barcode");
     if(item === undefined) {
       item = items.getElementByKey(barcode, "barcode");
       item.amount = 1;
-      this.goodList.push(item);
+      item.sumPrice = item.price;
+      this.itemList.push(item);
     }
     else {
       item.amount ++;
+      item.sumPrice = item.amount * item.price;
     }
     this.updateCart();
   };
 
   var thisClosure = this;
   $(window).on('beforeunload', function() {
-    thisClosure.goodList.saveInLocal("ShoppingCart_goodList");
+    thisClosure.itemList.saveInLocal("ShoppingCart_itemList");
   });
 
-  this.goodList.getFromLocal("ShoppingCart_goodList");
+  this.itemList.getFromLocal("ShoppingCart_itemList");
   this.updateCart();
 }

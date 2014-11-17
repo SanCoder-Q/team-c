@@ -7,11 +7,11 @@ $(document).ready(function () {
       _(items).each(function (item, index) {
         var addCart = '<button id="btn-'+index+'">加入购物车</button>';
         var listItem = $('<tr class="itemRow">\
-                    <td>' + item.name + '</td>\
-                    <td>' + item.price + '</td>\
-                    <td>' + item.unit + '</td>\
-                    <td>' + addCart + '</td>\
-                  </tr>');
+                          <td>' + item.name + '</td>\
+                          <td>' + item.price + '</td>\
+                          <td>' + item.unit + '</td>\
+                          <td>' + addCart + '</td>\
+                          </tr>');
         $('#item-table').append(listItem);
       });
       $('.itemRow button').each(function(i){
@@ -21,6 +21,19 @@ $(document).ready(function () {
           shoppingCart.addItem(items[itemIndex].barcode);
           printItemAmount();
         });
+      });
+    };
+
+    var printItemList = function() {
+      $.each(shoppingCart.itemList, function(index, item){
+        var itemRow = $('<tr>\
+                        <td>' + item.name + '</td>\
+                        <td>' + item.price.toFixed(2) + '</td>\
+                        <td>' + item.unit + '</td>\
+                        <td>' + item.amount + '</td>\
+                        <td>' + item.sumPrice.toFixed(2) + '</td>\
+                        </tr>');
+        $('#itemList').append(itemRow);
       });
     };
 
@@ -38,6 +51,7 @@ $(document).ready(function () {
 
     return {
       init: initItems,
+      printItemList: printItemList,
       printDate: printDate,
       printItemAmount: printItemAmount,
       printSumPrice: printSumPrice
@@ -46,6 +60,7 @@ $(document).ready(function () {
 
   feature.init();
   feature.printDate();
+  feature.printItemList();
   feature.printItemAmount();
   feature.printSumPrice();
 });
