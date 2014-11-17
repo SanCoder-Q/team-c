@@ -37,3 +37,12 @@ Array.prototype.getFromLocal = function(key) {
     }
   }
 };
+
+Array.prototype.getElementByKey = function(value, key) {
+  if(typeof key === "string") {
+    for(var i in this) {
+      if(this[i][key] === value)
+        return this[i];
+    }
+  }
+};
