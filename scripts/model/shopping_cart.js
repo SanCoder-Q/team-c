@@ -4,7 +4,7 @@ function ShoppingCart() {
   this.sumPrice = 0.0;
   this.itemAmount = 0;
 
-  this.updateCart = function() {
+  function updateCart() {
     var sumPrice = 0;
     var amount = 0;
     $.each(this.itemList, function(index, item) {
@@ -13,7 +13,7 @@ function ShoppingCart() {
     });
     this.sumPrice = sumPrice;
     this.itemAmount = amount;
-  };
+  }
 
   this.addItem = function(barcode) {
     var items = loadAllItems();
@@ -28,7 +28,7 @@ function ShoppingCart() {
       item.amount ++;
       item.sumPrice = item.amount * item.price;
     }
-    this.updateCart();
+    updateCart.call(this);
   };
 
   var thisClosure = this;
@@ -37,5 +37,5 @@ function ShoppingCart() {
   });
 
   this.itemList.getFromLocal("ShoppingCart_itemList");
-  this.updateCart();
+  updateCart.call(this);
 }
