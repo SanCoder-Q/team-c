@@ -4,7 +4,7 @@ $(document).ready(function () {
   var feature = (function () {
     var initItems = function () {
       var items = loadAllItems();
-      _(items).each(function (item, index) {
+      $.each(items, function (index, item) {
         var addCart = '<button id="btn-'+index+'">加入购物车</button>';
         var listItem = $('<tr class="itemRow">\
                           <td>' + item.name + '</td>\
