@@ -5,14 +5,12 @@ function ShoppingCart() {
   this.itemAmount = 0;
 
   function updateCart() {
-    var sumPrice = 0;
-    var amount = 0;
-    $.each(this.itemList, function(index, item) {
-      amount += item.amount;
-      sumPrice += item.sumPrice;
-    });
-    this.sumPrice = sumPrice;
-    this.itemAmount = amount;
+    this.sumPrice = _.reduce(this.itemList, function(sum, item){
+      return sum + item.sumPrice;
+    }, 0, this);
+    this.itemAmount = _.reduce(this.itemList, function(sum, item){
+      return sum + item.amount;
+    }, 0, this);
   }
 
   this.addItem = function(barcode) {
