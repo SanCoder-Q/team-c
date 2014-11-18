@@ -40,9 +40,6 @@ Array.prototype.getFromLocal = function(key) {
 
 Array.prototype.getElementByKey = function(value, key) {
   if(typeof key === "string") {
-    for(var i in this) {
-      if(this[i][key] === value)
-        return this[i];
-    }
+    return _.find(this, function(item){return item[key] === value;});
   }
 };
