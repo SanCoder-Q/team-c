@@ -32,17 +32,17 @@
     <tbody id="itemList">
       <tr ng-repeat="item in shoppingCart.itemList">
         <td>{{item.name}}<td>
-        <td>{{item.price.toFixed(2)}}<td>
+        <td>{{item.price | currency : "" : 2}}<td>
         <td>{{item.unit}}<td>
         <td>{{item.amount}}<td>
-        <td>{{item.sumPrice}}<td>
+        <td>{{item.sumPrice | currency : "" : 2}}<td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <div>
-  <p>总计：<span id="sumPrice">{{shoppingCart.sumPrice.toFixed(2)}}元</span></p>
+  <p>总计：<span id="sumPrice">{{shoppingCart.sumPrice | currency : "" : 2}}元</span></p>
   <a href="./payment.html">付款</a>
 </div>
 
