@@ -31,10 +31,10 @@
     </thead>
     <tbody>
       <tr class="itemRow" ng-repeat="item in items">
-      <td>{{item.name}}<td>
-      <td>{{item.unit}}<td>
-      <td>{{item.price | currency : "" : 2}}<td>
-      <td><button ng-click="shoppingCart.addItem(item.barcode)">加入购物车</button><td>
+      <td>{{item.name}}</td>
+      <td>{{item.unit}}</td>
+      <td>{{item.price | currency : "" : 2}}</td>
+      <td><button ng-click="shoppingCart.addItem(item.barcode)">加入购物车</button></td>
       </tr>
     </tbody>
   </table>
