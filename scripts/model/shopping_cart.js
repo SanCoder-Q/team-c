@@ -7,7 +7,7 @@ function ShoppingCart() {
   this.updateCart = function() {
     var sumPrice = 0;
     var amount = 0;
-    this.itemList.forEach(function(item) {
+    $.each(this.itemList, function(index, item) {
       amount += item.amount;
       sumPrice += item.sumPrice;
     });
