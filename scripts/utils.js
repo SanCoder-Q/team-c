@@ -21,19 +21,17 @@ var utils = (function (){
 
 Array.prototype.saveInLocal = function(key) {
   if(typeof key === "string") {
-    localStorage[key] = JSON.stringify(this);
+    localStorage[key] = angular.toJson(this);
   }
 };
 
 Array.prototype.getFromLocal = function(key) {
   if(typeof key === "string" && localStorage[key] !== undefined) {
-    var list = JSON.parse(localStorage[key]);
+    var list = angular.fromJson(localStorage[key]);
     if(list instanceof Array) {
-      this.length = 0;
       for(var i in list) {
         this.push(list[i]);
       }
-      this.length = list.length;
     }
   }
 };
@@ -43,3 +41,9 @@ Array.prototype.getElementByKey = function(value, key) {
     return _.find(this, function(item){return item[key] === value;});
   }
 };
+
+Object.defineProperties( Array.prototype, {
+  'saveInLocal': { enumerable: false},
+  'getFromLocal': { enumerable: false},
+  'getElementByKey': { enumerable: false}
+});
