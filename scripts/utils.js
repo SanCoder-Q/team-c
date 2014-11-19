@@ -21,13 +21,13 @@ var utils = (function (){
 
 Array.prototype.saveInLocal = function(key) {
   if(typeof key === "string") {
-    localStorage[key] = JSON.stringify(this);
+    localStorage[key] = angular.toJson(this);
   }
 };
 
 Array.prototype.getFromLocal = function(key) {
   if(typeof key === "string" && localStorage[key] !== undefined) {
-    var list = JSON.parse(localStorage[key]);
+    var list = angular.fromJson(localStorage[key]);
     if(list instanceof Array) {
       for(var i in list) {
         this.push(list[i]);
