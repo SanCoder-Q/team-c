@@ -13,7 +13,7 @@
   <ul>
     <li><a href="../index.html">主页</a></li>
     <li><a href="items.html">商品列表</a></li>
-    <li><a href="#">购物车(<span id="count">0</span>)</a></li>
+    <li><a href="#">购物车(<span id="count"></span>)</a></li>
   </ul>
 </nav>
 
@@ -26,16 +26,16 @@
       <th>单价(元)</th>
       <th>单位</th>
       <th>数量</th>
-      <th>小计</th>
+      <th>小计(元)</th>
     </tr>
     </thead>
-    <tbody>
+    <tbody id="itemList">
     </tbody>
   </table>
 </div>
 
 <div>
-  <p>总计：<span>0.00元</span></p>
+  <p>总计：<span id="sumPrice">0.00元</span></p>
   <a href="./payment.html">付款</a>
 </div>
 
@@ -43,9 +43,10 @@
 <script type="text/javascript" src="../lib/bootstrap-3.2.0-dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="../lib/lodash-2.4.1/lodash.compat.js"></script>
 <script type="text/javascript" src="../spec/fixtures.js"></script>
+<script type="text/javascript" src="../scripts/utils.js"></script>
 <script type="text/javascript" src="../scripts/model/item.js"></script>
 <script type="text/javascript" src="../scripts/model/promotion.js"></script>
-<script type="text/javascript" src="../scripts/utils.js"></script>
+<script type="text/javascript" src="../scripts/model/shopping_cart.js"></script>
 <script type="text/javascript" src="../scripts/main.js"></script>
 
 </body>

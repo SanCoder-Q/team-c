@@ -16,5 +16,34 @@ var utils = (function (){
 
     return {
         getDate: getDate
-    }
+    };
 })();
+
+Array.prototype.saveInLocal = function(key) {
+  if(typeof key === "string") {
+    localStorage[key] = JSON.stringify(this);
+  }
+};
+
+Array.prototype.getFromLocal = function(key) {
+  if(typeof key === "string" && localStorage[key] !== undefined) {
+    var list = JSON.parse(localStorage[key]);
+    if(list instanceof Array) {
+      for(var i in list) {
+        this.push(list[i]);
+      }
+    }
+  }
+};
+
+Array.prototype.getElementByKey = function(value, key) {
+  if(typeof key === "string") {
+    return _.find(this, function(item){return item[key] === value;});
+  }
+};
+
+Object.defineProperties( Array.prototype, {
+  'saveInLocal': { enumerable: false},
+  'getFromLocal': { enumerable: false},
+  'getElementByKey': { enumerable: false}
+});
